@@ -1,0 +1,199 @@
+ /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #9da0a4;
+	  background-color:#3b4148;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      /*margin-top: 20px;*/
+	  margin-top: 0px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+  
+
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      /*margin-bottom: 60px;*/
+	  margin-bottom: 0px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 518px;
+	  /*margin-top: 90px;*/
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 518px;
+    }
+	 .carousel img carrot {
+             position: absolute;
+
+      }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      /*max-width: 650px;*/
+      padding: 0 20px;
+      margin-top: 110px;
+    }
+    .carousel-caption h1,
+    .carousel-caption {
+		font-weight:300 !important;
+      /*margin: 0;*/
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 50px;
+	  margin-right:15px;	
+    }
+	
+.lead{
+	font-weight:600;
+	
+	}	
+	 .carousel-caption2 {
+      background-color: transparent;
+      position: static;
+      /*max-width: 650px;*/
+      padding: 0 20px;
+      margin-top: 110px;
+    }
+    .carousel-caption2 h1,
+    .carousel-caption2 .lead {
+		font-weight:300 !important;
+      /*margin: 0;*/
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+	
+	   .carousel-caption2 .btn2 {
+      margin-top: 50px;
+	  margin-left:15px;	
+    }
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+  
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+   
+
+    @media (max-width: 767px) {
+
+     .carousel-caption .btn {
+      margin-top: 50px;
+	  margin-right:0;	
+    }
+ 
+     
+      .carousel .container {
+
+      }
+	  
+	  .carousel-caption {
+      background-color: transparent;
+      position: static;
+      /*max-width: 650px;*/
+      padding: 0 20px;
+      margin-top: 35px;
+    }
+    
+	  
+	  .carousel-caption .btn {
+      margin-top: 30px;
+    }
+      .carousel-caption {
+        width: 85%;
+        padding: 0;
+        /*margin-top: 100px;*/
+		/*margin-top: 150px;*/
+      }
+      .carousel-caption h1 {
+        font-size: 50px;
+		font-weight:bold;
+      }
+      .carousel-caption .lead {
+		/*font-weight:300 !important;*/
+      /*margin: 0;*/
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+
+	  
+	  .push {
+            height: 50px;
+        }
+
+
+    }
