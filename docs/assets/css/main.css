@@ -465,16 +465,19 @@ Client grid
 
 @media (hover: none) {
     .tech-stack {
+        visibility: hidden;
+        /*
         opacity: 1;
-        visibility: visible;
         position: relative;
         background: #0e0e23;
         margin-top: -1px;
         height: auto;
+        */
     }
 
     .client-card {
         padding-top: min(150px, 35vw);
+        max-height: 30px;
     }
 
     .client-card:hover {
