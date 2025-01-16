@@ -1,0 +1,76 @@
+<h1>Projects</h1>
+
+In my free time, I maintain a couple of open source projects.
+
+<div class="gh-container">
+    <div class="gh-card instancio">
+        <h2>Instancio</h2>
+        <p class="gh-card-description">
+            Instancio is a Java library that generates fully populated objects for unit tests.
+        </p>
+        <div class="gh-card-stats">
+            <div class="gh-stat">
+                <i class="fa-regular fa-star"></i>
+                <span class="gh-stars"></span>
+            </div>
+            <div class="gh-stat">
+                <i class="fa-solid fa-code-fork"></i>
+                <span class="gh-forks"></span>
+            </div>
+        </div>
+        <div class="gh-card-links">
+            <a href="https://github.com/instancio/instancio" target="_blank" class="gh-card-link">
+                <i class="fa-brands fa-github"></i>
+                <span>Repository</span>
+            </a>
+            <a href="https://www.instancio.org" target="_blank" class="gh-card-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>Website</span>
+            </a>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="gh-card txtstyle">
+        <h2>TxtStyle</h2>
+        <p class="gh-card-description">
+            TxtStyle is a command line tool for colorizing output of console programs.
+            Its main goal is to assist humans in reading log files by highlighting text
+            in various colors using custom rules. Or it can simply be used to
+            make output of console programs prettier.
+        </p>
+        <div class="gh-card-stats">
+            <div class="gh-stat">
+                <i class="fa-regular fa-star"></i>
+                <span class="gh-stars"></span>
+            </div>
+            <div class="gh-stat">
+                <i class="fa-solid fa-code-fork"></i>
+                <span class="gh-forks"></span>
+            </div>
+        </div>
+        <div class="gh-card-links">
+            <a href="https://github.com/instancio/instancio" target="_blank" class="gh-card-link">
+                <i class="fa-brands fa-github"></i>
+                <span>Repository</span>
+            </a>
+            <a href="https://www.instancio.org" target="_blank" class="gh-card-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>Website</span>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    $.getJSON("https://api.github.com/repos/instancio/instancio", function (data) {
+        console.log()
+        $('.instancio .gh-stars').text(data.stargazers_count);
+        $('.instancio .gh-forks').text(data.forks_count);
+    });
+    $.getJSON("https://api.github.com/repos/armandino/TxtStyle", function (data) {
+        console.log()
+        $('.txtstyle .gh-stars').text(data.stargazers_count);
+        $('.txtstyle .gh-forks').text(data.forks_count);
+    });
+</script>

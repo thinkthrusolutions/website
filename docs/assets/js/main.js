@@ -1,135 +1,68 @@
-/* html5up.net | @ajlkn | License: CCA 3.0 */
+class Gradient {
+    constructor(startHex, endHex) {
+        this.start = this._hexToRgb(startHex);
+        this.end = this._hexToRgb(endHex);
+        this.nextRgb = [
+            this._random(this.start[0], this.end[0]),
+            this._random(this.start[1], this.end[1]),
+            this._random(this.start[2], this.end[2]),
+        ];
+        this.direction = [
+            Math.random() < 0.5 ? 1 : -1,
+            Math.random() < 0.5 ? 1 : -1,
+            Math.random() < 0.5 ? 1 : -1,
+        ];
+        this.selectedColumn = Math.floor(Math.random() * 3);
+        this.updateCount = 0;
+    }
 
-(function ($) {
+    _random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-    let $window = $(window),
-        $body = $('body'),
-        $main = $('#main'),
-        $panels = $main.children('.panel'),
-        $nav = $('#nav'), $nav_links = $nav.children('a');
+    _hexToRgb(hex) {
+        if (hex.length === 6) {
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return [r, g, b];
+        } else {
+            throw new Error(`Invalid HEX: ${hex}`);
+        }
+    }
 
-    breakpoints({
-        xlarge: ['1281px', '1680px'],
-        large: ['981px', '1280px'],
-        medium: ['737px', '980px'],
-        small: ['361px', '736px'],
-        xsmall: [null, '360px']
-    });
+    _rgbToHex(r, g, b) {
+        const toHex = (value) => value.toString(16).padStart(2, '0').toUpperCase();
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
 
-    // Play initial animations on page load.
-    $window.on('load', function () {
-        window.setTimeout(function () {
-            $body.removeClass('is-preload');
-        }, 100);
-    });
-
-    // Nav.
-    $nav_links
-        .on('click', function (event) {
-            let href = $(this).attr('href');
-
-            if (href.charAt(0) !== '#' || $panels.filter(href).length === 0) {
-                return;
-            }
-
-            event.preventDefault();
-            event.stopPropagation();
-
-            // Change panels.
-            if (window.location.hash !== href) {
-                window.location.hash = href;
-            }
-        });
-
-    // Panels.
-
-    // Initialize.
-    (function () {
-        let $panel, $link;
-
-        // Get panel, link.
-        if (window.location.hash) {
-            $panel = $panels.filter(window.location.hash);
-            $link = $nav_links.filter('[href="' + window.location.hash + '"]');
+    next() {
+        if (this.nextRgb[this.selectedColumn] + 1 > this.end[this.selectedColumn]) {
+            this.direction[this.selectedColumn] = -1;
+        } else if (this.nextRgb[this.selectedColumn] - 1 < this.start[this.selectedColumn]) {
+            this.direction[this.selectedColumn] = 1;
         }
 
-        // No panel/link? Default to first.
-        if (!$panel
-            || $panel.length === 0) {
-
-            $panel = $panels.first();
-            $link = $nav_links.first();
-
+        this.nextRgb[this.selectedColumn] += this.direction[this.selectedColumn];
+        if (this.updateCount === 50) {
+            this.selectedColumn = Math.floor(Math.random() * 3);
+            this.updateCount = 0;
         }
+        this.updateCount++;
+        return this._rgbToHex(...this.nextRgb);
+    }
+}
 
-        // Deactivate all panels except this one.
-        $panels.not($panel).addClass('inactive').hide();
-        $link.addClass('active');
-        $window.scrollTop(0);
+class RadialGradient {
+    constructor(gradient1, gradient2, callback) {
+        this.gradient1 = gradient1;
+        this.gradient2 = gradient2;
+        this.callback = callback;
+    }
 
-    })();
-
-    // Hashchange event.
-    $window.on('hashchange', function (event) {
-        let $panel, $link;
-
-        // Get panel, link.
-        if (window.location.hash) {
-            $panel = $panels.filter(window.location.hash);
-            $link = $nav_links.filter('[href="' + window.location.hash + '"]');
-
-            // No target panel? Bail.
-            if ($panel.length === 0) {
-                return;
-            }
-        }
-
-        // No panel/link? Default to first.
-        else {
-            $panel = $panels.first();
-            $link = $nav_links.first();
-        }
-
-        $panels.addClass('inactive');
-        $nav_links.removeClass('active');
-        $link.addClass('active');
-        $main
-            .css('max-height', $main.height() + 'px')
-            .css('min-height', $main.height() + 'px');
-
-        setTimeout(function () {
-            // Hide all panels.
-            $panels.hide();
-
-            // Show target panel.
-            $panel.show();
-
-            // Set new max/min height.
-            $main
-                .css('max-height', $panel.outerHeight() + 'px')
-                .css('min-height', $panel.outerHeight() + 'px');
-
-            $window.scrollTop(0);
-
-            // Delay.
-            window.setTimeout(function () {
-
-                // Activate target panel.
-                $panel.removeClass('inactive');
-
-                // Clear max/min height.
-                $main
-                    .css('max-height', '')
-                    .css('min-height', '');
-
-                // IE: Refresh.
-                $window.triggerHandler('--refresh');
-
-                locked = false;
-
-            }, (breakpoints.active('small') ? 0 : 500));
-
-        }, 250);
-    });
-
-})(jQuery);
+    updateBackground = () => {
+        const c1 = this.gradient1.next();
+        const c2 = this.gradient2.next();
+        this.callback(c1, c2);
+    }
+}
